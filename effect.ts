@@ -7,9 +7,12 @@ function effect(fn:any, options:any={}) {
         cleanup(effectFn)
         activEffect = effectFn
         effectStack.push(effectFn)
-        fn()
+        console.log('effct执行啦');
+        
+        const res = fn()     
         effectStack.pop()
         activEffect = effectStack[effectStack.length - 1]
+        return res
     }
     //options挂载effectFn
     effectFn.options = options

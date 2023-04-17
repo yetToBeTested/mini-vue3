@@ -1,7 +1,8 @@
+import { computed } from './computed'
 import {jobQueue,flushJob,effect,track,trigger} from './effect'
 
 
-const data:any = {bar:true, foo:1}
+const data:any = {bar:2, foo:1}
 
 const obj = new Proxy(data,{
     get(target, key) {
@@ -16,20 +17,35 @@ const obj = new Proxy(data,{
 })
 
 
-effect(()=>{
-        console.log(obj.foo);
-    },{
-        scheduler(fn:any){
-            // setTimeout(fn)
-            // fn()
-            jobQueue.add(fn)
-            flushJob()
-        }
-    }
-)
+// const effectFn = effect(
+//         // console.log(obj.foo);
+//     () => obj.bar + obj.foo
+//     ,{
+//         // scheduler(fn:any){
+//         //     // setTimeout(fn)
+//         //     // fn()
+//         //     jobQueue.add(fn)
+//         //     flushJob()
+//         // }
+//         lazy:true
+//     }
+// )
 
-obj.foo++
-obj.foo++
+// const val = effectFn()
+// console.log(val);
 
+
+const val2 = computed(() => obj.bar + obj.foo)
+// console.log(val2.vlaue);
+// console.log(val2.vlaue);
+// console.log(val2.vlaue);
+// obj.bar ++
+// console.log(val2.vlaue);
+
+// effect(()=>{
+//     obj.bar ++
+//     console.log(val2.vlaue);
+    
+// })
 
 export {}
