@@ -7,7 +7,7 @@ function effect(fn:any, options:any={}) {
         cleanup(effectFn)
         activEffect = effectFn
         effectStack.push(effectFn)
-        console.log('effct执行啦');
+        // console.log('effct执行啦');
         
         const res = fn()     
         effectStack.pop()
@@ -71,6 +71,8 @@ function trigger(target:any, key:any){
     const effectsToRun:any = new Set()
     effects.forEach((effect:any)=>{
         if (effect != activEffect){
+            // console.log('effct');
+            
             effectsToRun.add(effect)
         }
     })

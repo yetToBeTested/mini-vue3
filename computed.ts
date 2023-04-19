@@ -17,12 +17,10 @@ export function computed(fn:any){
             if (dirty) {
                 dirty = false
                 val = effectFn()
+                // console.log(val);
             }
             track(obj, 'value')
-            return val
-            
-            
-            
+            return val 
         }
     }
     return obj

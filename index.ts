@@ -1,5 +1,7 @@
-import { computed } from './computed'
+
 import {jobQueue,flushJob,effect,track,trigger} from './effect'
+import { computed } from './computed'
+import { watch } from './watch'
 
 
 const data:any = {bar:2, foo:1}
@@ -35,17 +37,14 @@ const obj = new Proxy(data,{
 // console.log(val);
 
 
-const val2 = computed(() => obj.bar + obj.foo)
-// console.log(val2.vlaue);
-// console.log(val2.vlaue);
-// console.log(val2.vlaue);
-// obj.bar ++
+// const val2 = computed(() => obj.bar + obj.foo)
 // console.log(val2.vlaue);
 
-// effect(()=>{
-//     obj.bar ++
-//     console.log(val2.vlaue);
+watch(obj,()=>{
+    console.log('obj');
     
-// })
+})
+
+ obj.foo ++
 
 export {}
